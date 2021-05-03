@@ -6,6 +6,7 @@ import * as Location from 'expo-location';
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [reversedLocation, setReversedLocation] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -17,14 +18,21 @@ const HomeScreen = ({ navigation }) => {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      const coords = { latitude: location.coords.latitude, longitude: location.coords.longitude };
+      console.log(location);
+
+      let reversedLocation = await Location.reverseGeocodeAsync(coords);
+      setReversedLocation(reversedLocation);
     })();
   }, []);
 
   let text = 'Waiting...';
+  let reversedLocationText = 'Unknown';
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
     text = JSON.stringify(location);
+    reversedLocationText = reversedLocation[0].city;
   }
 
   return (
@@ -32,6 +40,7 @@ const HomeScreen = ({ navigation }) => {
       <View style={{ padding: 50 }}>
         <Text style={{ color: '#FFA62B', fontSize: 30, marginBottom: 40 }}>Welcome to the app</Text>
         <Text>{text}</Text>
+        <Text>{reversedLocationText}</Text>
         <Button
           color="#7D82B8"
           title="Go to results"
