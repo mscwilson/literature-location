@@ -1,13 +1,12 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-const ResultsScreen = ({ navigation }) => {
+const ResultsScreen = () => {
   return (
     <View>
       <Text>Results screen</Text>
-
     </View>
-  )
-}
+  );
+};
 
 export default ResultsScreen;

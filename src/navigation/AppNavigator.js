@@ -1,10 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import React from 'react'
-import HomeScreen from '../screens/HomeScreen'
-import ResultsScreen from '../screens/ResultsScreen'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import HomeScreen from '../screens/HomeScreen';
+import ResultsScreen from '../screens/ResultsScreen';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
@@ -14,7 +14,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Results" component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
-}
+  );
+};
 
-export default AppNavigator
+export default AppNavigator;
