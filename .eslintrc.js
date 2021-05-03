@@ -4,8 +4,8 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:react/recommended',
-    'standard'
+    'eslint:recommended',
+    'plugin:react/recommended'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -23,5 +23,6 @@ module.exports = {
     }
   },
   rules: {
+    "react/jsx-indent": ['error', 2,]
   }
 }
