@@ -23,16 +23,17 @@ const HomeScreen = ({ navigation }) => {
 
       let reversedLocation = await Location.reverseGeocodeAsync(coords);
       setReversedLocation(reversedLocation);
+      console.log(reversedLocation);
     })();
   }, []);
 
   let text = 'Waiting...';
-  let reversedLocationText = 'Unknown';
+  let city = 'Unknown';
   if (errorMsg) {
     text = errorMsg;
-  } else if (location) {
+  } else if (location && reversedLocation) {
     text = JSON.stringify(location);
-    reversedLocationText = reversedLocation[0].city;
+    city = reversedLocation[0].city;
   }
 
   return (
@@ -40,11 +41,11 @@ const HomeScreen = ({ navigation }) => {
       <View style={{ padding: 50 }}>
         <Text style={{ color: '#FFA62B', fontSize: 30, marginBottom: 40 }}>Welcome to the app</Text>
         <Text>{text}</Text>
-        <Text>{reversedLocationText}</Text>
+        <Text>{city}</Text>
         <Button
           color="#7D82B8"
           title="Go to results"
-          onPress={() => navigation.navigate('Results')}>
+          onPress={() => navigation.navigate('Results', { city })}>
           A button
         </Button>
       </View>
